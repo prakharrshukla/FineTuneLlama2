@@ -1,35 +1,35 @@
-# 🔥 Fine-Tune Llama 2 & GPT Models
+# Fine-Tune Llama 2 & GPT Models
 
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0%2B-red)](https://pytorch.org/)
-[![Transformers](https://img.shields.io/badge/🤗%20Transformers-4.44%2B-yellow)](https://huggingface.co/transformers/)
+[![Transformers](https://img.shields.io/badge/Transformers-4.44%2B-yellow)](https://huggingface.co/transformers/)
 [![CUDA](https://img.shields.io/badge/CUDA-11.8%2B-green)](https://developer.nvidia.com/cuda-toolkit)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 A comprehensive, **RTX 4070 optimized** implementation for fine-tuning large language models including **Llama 2**, **GPT-2**, and other transformer models using state-of-the-art techniques.
 
-## 🚀 Key Features
+## Key Features
 
-- ✅ **RTX 4070 Optimized**: Memory-efficient training for 8.6GB VRAM
-- ✅ **Multiple Model Support**: Llama 2, GPT-2, Code Llama, Mistral
-- ✅ **Advanced Techniques**: LoRA, QLoRA, Mixed Precision Training
-- ✅ **Production Ready**: Complete pipeline from training to deployment
-- ✅ **Hugging Face Integration**: Seamless model hub integration
-- ✅ **CUDA 11.8+ Support**: Latest GPU optimizations
+- **RTX 4070 Optimized**: Memory-efficient training for 8.6GB VRAM
+- **Multiple Model Support**: Llama 2, GPT-2, Code Llama, Mistral
+- **Advanced Techniques**: LoRA, QLoRA, Mixed Precision Training
+- **Production Ready**: Complete pipeline from training to deployment
+- **Hugging Face Integration**: Seamless model hub integration
+- **CUDA 11.8+ Support**: Latest GPU optimizations
 
-## 📋 Table of Contents
+## Table of Contents
 
-- [🔧 Installation](#-installation)
-- [🎯 Quick Start](#-quick-start)
-- [💻 Hardware Requirements](#-hardware-requirements)
-- [📚 Supported Models](#-supported-models)
-- [🔥 Training Methods](#-training-methods)
-- [📊 Results](#-results)
-- [🛠️ Advanced Usage](#️-advanced-usage)
-- [🤝 Contributing](#-contributing)
-- [📄 License](#-license)
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+- [Hardware Requirements](#hardware-requirements)
+- [Supported Models](#supported-models)
+- [Training Methods](#training-methods)
+- [Results](#results)
+- [Advanced Usage](#advanced-usage)
+- [Contributing](#contributing)
+- [License](#license)
 
-## 🔧 Installation
+## Installation
 
 ### Prerequisites
 - Python 3.8+
@@ -61,7 +61,7 @@ docker build -t finetune-llama2 .
 docker run --gpus all -it -v $(pwd):/workspace finetune-llama2
 ```
 
-## 🎯 Quick Start
+## Quick Start
 
 ### 1. Basic Fine-tuning (5 minutes)
 
@@ -94,7 +94,7 @@ from huggingface_hub import login
 login(token="your_hf_token_here")  # For accessing gated models
 ```
 
-## 💻 Hardware Requirements
+## Hardware Requirements
 
 ### Minimum Requirements
 | Component | Minimum | Recommended | Optimal |
@@ -110,16 +110,16 @@ login(token="your_hf_token_here")  # For accessing gated models
 - **Llama 2 7B (Quantized)**: 30-60 minutes
 - **Memory Usage**: 4-6GB VRAM optimal
 
-## 📚 Supported Models
+## Supported Models
 
-### 🔥 Featured Models
+### Featured Models
 | Model | Parameters | VRAM Usage | Training Time | Status |
 |-------|------------|------------|---------------|--------|
-| **GPT-2** | 124M | ~2GB | 2-5 min | ✅ Ready |
-| **GPT-2 Medium** | 355M | ~4GB | 10-15 min | ✅ Ready |
-| **Llama 2 7B** | 7B | ~14GB (6GB with QLoRA) | 45-90 min | ✅ Ready |
-| **Code Llama** | 7B | ~14GB (6GB with QLoRA) | 45-90 min | ✅ Ready |
-| **Mistral 7B** | 7B | ~14GB (6GB with QLoRA) | 45-90 min | 🔄 Coming Soon |
+| **GPT-2** | 124M | ~2GB | 2-5 min | Ready |
+| **GPT-2 Medium** | 355M | ~4GB | 10-15 min | Ready |
+| **Llama 2 7B** | 7B | ~14GB (6GB with QLoRA) | 45-90 min | Ready |
+| **Code Llama** | 7B | ~14GB (6GB with QLoRA) | 45-90 min | Ready |
+| **Mistral 7B** | 7B | ~14GB (6GB with QLoRA) | 45-90 min | Coming Soon |
 
 ### Model Selection Guide
 ```python
@@ -132,7 +132,7 @@ models = {
 }
 ```
 
-## 🔥 Training Methods
+## Training Methods
 
 ### 1. **Standard Fine-tuning**
 - Full model parameter updates
@@ -154,7 +154,7 @@ models = {
 - 2x faster training on modern GPUs
 - Best for: All scenarios (always recommended)
 
-## 📊 Results
+## Results
 
 ### Training Metrics (RTX 4070)
 ```
@@ -173,7 +173,7 @@ Model: GPT-2 Medium (355M parameters)
 | **Response Quality** | 7.1/10 | 8.9/10 | +25% |
 | **Domain Knowledge** | 5.8/10 | 9.1/10 | +57% |
 
-## 🛠️ Advanced Usage
+## Advanced Usage
 
 ### Custom Dataset Training
 ```python
@@ -221,7 +221,7 @@ model = AutoModelForCausalLM.from_pretrained(
 )
 ```
 
-## 🔧 Configuration
+## Configuration
 
 ### RTX 4070 Optimal Settings
 ```python
@@ -245,31 +245,31 @@ model.gradient_checkpointing_enable()
 torch.cuda.empty_cache()
 ```
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 FineTuneLlama2/
-├── 📓 Fine_tune_Llama_2.ipynb      # Main tutorial notebook
-├── 📄 README.md                    # This file
-├── 📄 requirements.txt             # Python dependencies
-├── 📄 LICENSE                      # MIT License
-├── 🐳 Dockerfile                   # Docker setup
-├── 📁 models/                      # Saved models
+├── Fine_tune_Llama_2.ipynb      # Main tutorial notebook
+├── README.md                    # This file
+├── requirements.txt             # Python dependencies
+├── LICENSE                      # MIT License
+├── Dockerfile                   # Docker setup
+├── models/                      # Saved models
 │   ├── gpt2_fine_tuned/
 │   └── llama2_lora/
-├── 📁 data/                        # Training datasets
+├── data/                        # Training datasets
 │   ├── sample_data.txt
 │   └── custom_dataset.json
-├── 📁 scripts/                     # Python scripts
+├── scripts/                     # Python scripts
 │   ├── train.py
 │   ├── inference.py
 │   └── utils.py
-└── 📁 configs/                     # Configuration files
+└── configs/                     # Configuration files
     ├── gpt2_config.yaml
     └── llama2_config.yaml
 ```
 
-## 🚨 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -298,7 +298,7 @@ pip uninstall torch transformers -y
 pip install torch==2.1.0 transformers==4.44.0
 ```
 
-## 🤝 Contributing
+## Contributing
 
 We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md).
 
@@ -319,7 +319,7 @@ black .
 isort .
 ```
 
-## 📊 Benchmarks
+## Benchmarks
 
 ### Training Speed (RTX 4070)
 | Model | Parameters | Batch Size | Time/Epoch | Total Time |
@@ -336,7 +336,7 @@ isort .
 | + LoRA | 2.1GB | 24% |
 | + QLoRA | 1.8GB | 21% |
 
-## 🏆 Acknowledgments
+## Acknowledgments
 
 - **Hugging Face** for the amazing Transformers library
 - **Meta AI** for Llama 2 models
@@ -344,23 +344,21 @@ isort .
 - **NVIDIA** for CUDA and GPU computing
 - **Community contributors** for feedback and improvements
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🔗 Links
+## Links
 
-- **🤗 Hugging Face Models**: [Our fine-tuned models](https://huggingface.co/prakharrshukla)
-- **📖 Documentation**: [Detailed docs](https://github.com/prakharrshukla/FineTuneLlama2/wiki)
-- **💬 Discord**: [Join our community](https://discord.gg/finetune-llama2)
-- **🐦 Twitter**: [@prakharrshukla](https://twitter.com/prakharrshukla)
+- **Hugging Face Models**: [Our fine-tuned models](https://huggingface.co/prakharrshukla)
+- **Documentation**: [Detailed docs](https://github.com/prakharrshukla/FineTuneLlama2/wiki)
+- **Discord**: [Join our community](https://discord.gg/finetune-llama2)
+- **Twitter**: [@prakharrshukla](https://twitter.com/prakharrshukla)
 
 ---
 
 <div align="center">
 
-### ⭐ Star this repository if it helped you!
 
-**Made with ❤️ for the AI community**
 
 </div>
