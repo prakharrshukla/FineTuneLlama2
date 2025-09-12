@@ -1,0 +1,68 @@
+# Llama 2 Fine-tuning Configuration
+model_name: "meta-llama/Llama-2-7b-chat-hf"
+output_dir: "./models/llama2_fine_tuned"
+
+# Training Parameters
+training:
+  batch_size: 1
+  num_epochs: 3
+  learning_rate: 2e-4
+  weight_decay: 0.01
+  warmup_ratio: 0.03
+  max_length: 512
+  gradient_accumulation_steps: 4
+  
+# Optimization
+optimization:
+  fp16: false
+  bf16: true  # Better for Llama 2
+  gradient_checkpointing: true
+  dataloader_num_workers: 4
+  dataloader_pin_memory: true
+  
+# LoRA Configuration (recommended for Llama 2)
+lora:
+  enabled: true
+  r: 64
+  lora_alpha: 16
+  lora_dropout: 0.1
+  target_modules: 
+    - "q_proj"
+    - "v_proj"
+    - "k_proj"
+    - "o_proj"
+    - "gate_proj"
+    - "up_proj"
+    - "down_proj"
+  
+# Quantization (for memory efficiency)
+quantization:
+  enabled: true
+  load_in_4bit: true
+  bnb_4bit_use_double_quant: true
+  bnb_4bit_quant_type: "nf4"
+  bnb_4bit_compute_dtype: "float16"
+  
+# Data
+data:
+  train_file: "./data/sample_data.json"
+  validation_split: 0.1
+  
+# Hardware
+hardware:
+  device: "cuda"
+  mixed_precision: "bf16"
+  
+# Logging
+logging:
+  log_level: "INFO"
+  save_steps: 200
+  eval_steps: 500
+  logging_steps: 50
+  
+# Special tokens for Llama 2
+special_tokens:
+  system_token: "<s>[INST] <<SYS>>\n"
+  user_token: "\n<</SYS>>\n\n"
+  assistant_token: " [/INST] "
+  end_token: " </s><s>[INST] "

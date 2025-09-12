@@ -1,0 +1,24 @@
+{
+  "texts": [
+    "Artificial intelligence is transforming the way we interact with technology and solve complex problems.",
+    "Machine learning algorithms can process vast amounts of data to discover hidden patterns and insights.",
+    "Deep learning models achieve breakthrough performance in computer vision, natural language processing, and speech recognition.",
+    "Natural language processing enables computers to understand, interpret, and generate human language.",
+    "Computer vision systems can identify, classify, and analyze objects, scenes, and activities in images and videos.",
+    "Reinforcement learning teaches AI agents to make decisions through trial and error interactions with their environment.",
+    "Transfer learning allows models to apply knowledge gained from one task to improve performance on related tasks.",
+    "Data science combines statistical analysis, programming skills, and domain expertise to extract insights from data.",
+    "Neural networks are inspired by the structure and function of biological neurons in the human brain.",
+    "Transformer architectures have revolutionized natural language processing with their attention mechanisms.",
+    "Large language models demonstrate impressive capabilities in text generation, translation, and reasoning.",
+    "Fine-tuning pre-trained models is an efficient approach to adapt them for specific tasks and domains.",
+    "GPU acceleration enables faster training and inference for computationally intensive machine learning models.",
+    "Open-source frameworks like PyTorch and TensorFlow democratize access to advanced AI technologies.",
+    "Ethical AI development ensures that artificial intelligence systems are fair, transparent, and beneficial to society.",
+    "Automated machine learning (AutoML) simplifies the process of building and deploying machine learning models.",
+    "Edge computing brings AI capabilities closer to data sources, enabling real-time processing and reduced latency.",
+    "Federated learning allows multiple parties to collaboratively train models without sharing raw data.",
+    "Explainable AI helps users understand how machine learning models make decisions and predictions.",
+    "Continuous learning enables AI systems to adapt and improve their performance over time with new data."
+  ]
+}

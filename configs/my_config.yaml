@@ -1,0 +1,12 @@
+# Sample training configuration
+model_name: "gpt2"
+output_dir: "./models/my_fine_tuned_model"
+
+training:
+  batch_size: 4
+  num_epochs: 3
+  learning_rate: 5e-5
+  max_length: 512
+
+data:
+  train_file: "./data/my_training_data.json"
