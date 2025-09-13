@@ -1,4 +1,5 @@
-#!/usr/bin/env python3
+
+  #!/usr/bin/env python3
 """
 Utility functions for fine-tuning pipeline
 """
@@ -207,15 +208,15 @@ def benchmark_model_speed(model, tokenizer, device="cuda", num_iterations=10):
 
 if __name__ == "__main__":
     # Run diagnostics
-    print("🔍 System Diagnostics")
+    print("System Diagnostics")
     print("=" * 50)
     
-    print("\n💻 System Resources:")
+    print("\nSystem Resources:")
     system_info = check_system_resources()
     for key, value in system_info.items():
         print(f"  {key}: {value}")
     
-    print("\n🎮 GPU Information:")
+    print("\nGPU Information:")
     gpu_info = check_gpu_memory()
     for key, value in gpu_info.items():
         if isinstance(value, dict):
@@ -225,10 +226,10 @@ if __name__ == "__main__":
         else:
             print(f"  {key}: {value}")
     
-    print("\n🧪 Environment Validation:")
+    print("\nEnvironment Validation:")
     validate_environment()
     
-    print("\n📊 Memory Estimates for Popular Models:")
+    print("\nMemory Estimates for Popular Models:")
     models = ["gpt2", "gpt2-medium", "gpt2-large"]
     for model in models:
         estimate = estimate_memory_usage(model, batch_size=2)

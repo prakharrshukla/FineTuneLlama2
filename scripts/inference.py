@@ -53,22 +53,22 @@ def generate_text(model, tokenizer, prompt, max_length=100, temperature=0.7, num
 
 def interactive_mode(model, tokenizer):
     """Interactive chat mode"""
-    print("🤖 Interactive Mode - Type 'quit' to exit")
+    print("Interactive Mode - Type 'quit' to exit")
     print("=" * 50)
     
     while True:
         try:
-            prompt = input("\n👤 You: ")
+            prompt = input("\nYou: ")
             if prompt.lower() in ['quit', 'exit', 'q']:
                 break
             
             responses = generate_text(model, tokenizer, prompt)
-            print(f"\n🤖 Bot: {responses[0]}")
+            print(f"\nBot: {responses[0]}")
             
         except KeyboardInterrupt:
             break
     
-    print("\n👋 Goodbye!")
+    print("\nGoodbye!")
 
 def batch_inference(model, tokenizer, prompts_file, output_file):
     """Process multiple prompts from file"""
