@@ -355,13 +355,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Discord**: [Join our community](https://discord.gg/finetune-llama2)
 - **Twitter**: [@prakharrshukla](https://twitter.com/prakharrshukla)
 
+
 ---
 
 <div align="center">
 
+** Star this repository if it helped you!**
 
+Made with  for the AI community
 
 </div>
-#   U p d a t e d   0 9 / 1 3 / 2 0 2 5   1 1 : 0 3 : 1 9  
- 
-# Repository updated on 09/13/2025 11:05:55
