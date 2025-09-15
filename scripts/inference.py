@@ -12,9 +12,19 @@ logger = logging.getLogger(__name__)
 def load_model(model_path):
     logger.info(f"Loading model from {model_path}")
     tokenizer = AutoTokenizer.from_pretrained(model_path)
-    model = AutoModelForCausalLM.from_pretrained(
-        model_path, torch_dtype=torch.float16, device_map="auto"
-    )
+    
+    # Use device_map only if accelerate is available and CUDA is available
+    try:
+        import accelerate
+        if torch.cuda.is_available():
+            model = AutoModelForCausalLM.from_pretrained(
+                model_path, torch_dtype=torch.float16, device_map="auto"
+            )
+        else:
+            model = AutoModelForCausalLM.from_pretrained(model_path)
+    except ImportError:
+        model = AutoModelForCausalLM.from_pretrained(model_path)
+    
     return model, tokenizer
 
 def generate_text(model, tokenizer, prompt, max_length=100, temperature=0.7, num_return_sequences=1):
