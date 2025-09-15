@@ -1,21 +1,17 @@
 
-  #!/usr/bin/env python3
-"""
-Utility functions for fine-tuning pipeline
-"""
+#!/usr/bin/env python3
+"""Utility functions for fine-tuning pipeline"""
 
 import os
 import json
 import torch
 import psutil
-import GPUtil
 from typing import List, Dict, Any
 import logging
 
 logger = logging.getLogger(__name__)
 
 def check_gpu_memory():
-    """Check GPU memory usage"""
     if torch.cuda.is_available():
         gpu_info = {}
         for i in range(torch.cuda.device_count()):
@@ -34,7 +30,6 @@ def check_gpu_memory():
     return {"error": "No CUDA GPUs available"}
 
 def check_system_resources():
-    """Check system resource usage"""
     cpu_percent = psutil.cpu_percent(interval=1)
     memory = psutil.virtual_memory()
     disk = psutil.disk_usage('/')
@@ -50,7 +45,6 @@ def check_system_resources():
     }
 
 def get_model_size(model):
-    """Calculate model size in parameters"""
     total_params = sum(p.numel() for p in model.parameters())
     trainable_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
     
@@ -63,8 +57,6 @@ def get_model_size(model):
     }
 
 def estimate_memory_usage(model_name: str, batch_size: int = 1, sequence_length: int = 512):
-    """Estimate memory usage for training"""
-    # Rough estimates based on model size
     model_sizes = {
         "gpt2": 124e6,
         "gpt2-medium": 355e6,
@@ -73,15 +65,10 @@ def estimate_memory_usage(model_name: str, batch_size: int = 1, sequence_length:
     }
     
     params = model_sizes.get(model_name.lower(), 124e6)
-    
-    # Rough calculation: 4 bytes per parameter for FP32, 2 for FP16
-    model_memory_fp16 = params * 2 / 1e9  # GB
-    
-    # Additional memory for gradients, optimizer states, activations
-    gradient_memory = model_memory_fp16  # Same size as model
-    optimizer_memory = model_memory_fp16 * 2  # AdamW uses 2x model size
-    activation_memory = batch_size * sequence_length * 1024 * 2 / 1e9  # Rough estimate
-    
+    model_memory_fp16 = params * 2 / 1e9
+    gradient_memory = model_memory_fp16
+    optimizer_memory = model_memory_fp16 * 2
+    activation_memory = batch_size * sequence_length * 1024 * 2 / 1e9
     total_memory = model_memory_fp16 + gradient_memory + optimizer_memory + activation_memory
     
     return {
@@ -90,25 +77,22 @@ def estimate_memory_usage(model_name: str, batch_size: int = 1, sequence_length:
         "optimizer_memory_gb": optimizer_memory,
         "activation_memory_gb": activation_memory,
         "total_estimated_gb": total_memory,
-        "recommended_gpu_memory_gb": total_memory * 1.2  # 20% buffer
+        "recommended_gpu_memory_gb": total_memory * 1.2
     }
 
 def save_training_config(config: Dict[str, Any], output_path: str):
-    """Save training configuration"""
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     with open(output_path, 'w') as f:
         json.dump(config, f, indent=2)
     logger.info(f"Training config saved to {output_path}")
 
 def load_training_config(config_path: str) -> Dict[str, Any]:
-    """Load training configuration"""
     with open(config_path, 'r') as f:
         config = json.load(f)
     logger.info(f"Training config loaded from {config_path}")
     return config
 
 def create_sample_data(output_path: str, num_samples: int = 100):
-    """Create sample training data"""
     sample_texts = [
         "Artificial intelligence is transforming the world of technology.",
         "Machine learning algorithms can process vast amounts of data.",
@@ -120,10 +104,7 @@ def create_sample_data(output_path: str, num_samples: int = 100):
         "Data science combines statistics, programming, and domain expertise.",
     ]
     
-    # Extend to desired number of samples
     texts = (sample_texts * (num_samples // len(sample_texts) + 1))[:num_samples]
-    
-    # Save as JSON
     data = {"texts": texts}
     with open(output_path, 'w') as f:
         json.dump(data, f, indent=2)
@@ -131,15 +112,12 @@ def create_sample_data(output_path: str, num_samples: int = 100):
     logger.info(f"Created {num_samples} sample texts in {output_path}")
 
 def validate_environment():
-    """Validate training environment"""
     issues = []
     
-    # Check Python version
     import sys
     if sys.version_info < (3, 8):
         issues.append("Python 3.8+ required")
     
-    # Check PyTorch
     try:
         import torch
         if not torch.cuda.is_available():
@@ -147,7 +125,6 @@ def validate_environment():
     except ImportError:
         issues.append("PyTorch not installed")
     
-    # Check transformers
     try:
         import transformers
         if hasattr(transformers, '__version__'):
@@ -157,9 +134,8 @@ def validate_environment():
     except ImportError:
         issues.append("Transformers not installed")
     
-    # Check available memory
     memory = psutil.virtual_memory()
-    if memory.total < 16 * 1e9:  # 16GB
+    if memory.total < 16 * 1e9:
         issues.append("Less than 16GB RAM detected")
     
     if issues:
@@ -172,19 +148,16 @@ def validate_environment():
     return len(issues) == 0
 
 def benchmark_model_speed(model, tokenizer, device="cuda", num_iterations=10):
-    """Benchmark model inference speed"""
     model.eval()
     model.to(device)
     
     test_prompt = "The future of artificial intelligence"
     inputs = tokenizer.encode(test_prompt, return_tensors="pt").to(device)
     
-    # Warmup
     for _ in range(3):
         with torch.no_grad():
             _ = model.generate(inputs, max_length=50, do_sample=False)
     
-    # Benchmark
     import time
     times = []
     
@@ -207,7 +180,6 @@ def benchmark_model_speed(model, tokenizer, device="cuda", num_iterations=10):
     }
 
 if __name__ == "__main__":
-    # Run diagnostics
     print("System Diagnostics")
     print("=" * 50)
     
