@@ -360,8 +360,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 <div align="center">
 
-** Star this repository if it helped you!**
+**Star this repository if it helped you!**
 
-Made with  for the AI community
+Made for the AI community
 
 </div>
