@@ -83,6 +83,7 @@ models/
 model/
 checkpoints/
 outputs/
+fine_tuned_gpt2/
 
 # Logs
 logs/
